@@ -8,8 +8,8 @@ var i = 0
 
 app.get("/", function (req, res) {
     nifffff();
+    console.log('logggggggg')
     res.end('Home:' + i)
-    
 })
 function nifffff() {
     console.log('in function:')
