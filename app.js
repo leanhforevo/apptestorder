@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: true });
+const nightmare = Nightmare({ show: false });
 
 app.listen(process.env.PORT||3000)
 var i = 0
