@@ -1,13 +1,2 @@
-web: # Install dependencies
-apt-get update &&\apt-get install -y libgtk2.0-0 libgconf-2-4 \libasound2 libxtst6 libxss1 libnss3 xvfb
-npm install segmentio/nightmare
+web: DEBUG=nightmare xvfb-run --server-args="-screen 0 1024x768x24" node app.js
 
-# Start Xvfb
-Xvfb -ac -screen scrn 1280x2000x24 :9.0 &
-export DISPLAY=:9.0
-
-# Test it
-apt-get install vim
-vim index.js
-# <paste in example>
-node app.js
