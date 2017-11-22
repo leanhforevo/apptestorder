@@ -7,7 +7,9 @@ app.listen(process.env.PORT||3000)
 var i = 0
 nifffff();
 app.get("/", function (req, res) {
+    i++
     res.end('Home:' + i)
+    
 })
 function nifffff() {
     nightmare
