@@ -5,13 +5,14 @@ const nightmare = Nightmare({ show: false });
 
 app.listen(process.env.PORT||3000)
 var i = 0
-nifffff();
+
 app.get("/", function (req, res) {
-    i++
+    nifffff();
     res.end('Home:' + i)
     
 })
 function nifffff() {
+    console.log('in function:')
     nightmare
         .goto('https://darkness.sku.vn/products/bo-chan-goi-van-phong-olivin-totoro')
         .wait('#buy-now')
