@@ -3,7 +3,7 @@ var app = express();
 var Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
 
-app.listen(3000)
+app.listen(process.env.PORT||3000)
 var i = 0
 nifffff();
 app.get("/", function (req, res) {
