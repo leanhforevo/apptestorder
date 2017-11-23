@@ -47,9 +47,9 @@ callback(true)
 			log='Search failed:'+ error;
 			callback(false)
         });
-	}catch(function(error){
+	}catch(error){
 		log="ERROR: "+error
-	})
+	}
   
 	
 }
