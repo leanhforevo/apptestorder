@@ -8,8 +8,8 @@ var log="";
 var logErr="";
 function nifffff(callback) {
    log="Function run"
-	i++;
-    nightmare
+	try{
+		  nightmare
         .goto('https://darkness.sku.vn/products/bo-chan-goi-van-phong-olivin-totoro')
         .wait('#buy-now')
         .click('#buy-now')
@@ -47,6 +47,10 @@ callback(true)
 			log='Search failed:'+ error;
 			callback(false)
         });
+	}catch(function(error){
+		log="ERROR: "+error
+	})
+  
 	
 }
 //nifffff();
