@@ -44,7 +44,7 @@ callback(true)
 	   })
         .catch(function (error) {
             console.error('Search failed:', error);
-			logErr='Search failed:'+ error;
+			log='Search failed:'+ error;
 			callback(false)
         });
 	
@@ -67,7 +67,7 @@ function runTest(callback){
 runTest()//run app
 app.get("/", function (req, res) {
     console.log('logggggggg')
-	res.end('APP:' + log+'\n'+'Err:' + logErr+'\n'+)
+	res.end('APP:' + log)
 })
 
 app.listen(process.env.PORT||3000)
