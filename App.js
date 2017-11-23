@@ -1,8 +1,5 @@
 var express = require("express");
-var cron = require('node-cron');
 var Nightmare = require('nightmare');
-var async = require('asyncawait/async');
-var await = require('asyncawait/await');
 
 var app = express();
 const nightmare = Nightmare({ show: false });
