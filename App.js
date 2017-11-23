@@ -1,17 +1,18 @@
-
 var express = require("express");
-var app = express();
+var cron = require('node-cron');
 var Nightmare = require('nightmare');
+var async = require('asyncawait/async');
+var await = require('asyncawait/await');
+
+var app = express();
 const nightmare = Nightmare({ show: false });
 
-var i = 0
-var log="";
-var logErr="";
-function nifffff(callback) {
-   log="Function run-"
-	try{
-		log+="1-"
-		  nightmare
+var i = 0;
+const version = 0.4;
+//var listOrder = [];
+// auto
+function autoBuy() {
+    nightmare
         .goto('https://darkness.sku.vn/products/bo-chan-goi-van-phong-olivin-totoro')
         .wait('#buy-now')
         .click('#buy-now')
@@ -20,10 +21,10 @@ function nifffff(callback) {
         .click('#checkout')
 
         .wait('#billing_address_full_name')
-        .type('#billing_address_full_name', 'auto test')
+        .type('#billing_address_full_name', 'auto buy')
 
         .wait('#checkout_user_email')
-        .type('#checkout_user_email', 'autotest@sd.asd')
+        .type('#checkout_user_email', 'autobuy@haravan.com')
 
 
         .wait('#billing_address_phone')
@@ -38,45 +39,76 @@ function nifffff(callback) {
         .select('#customer_shipping_district', 479)
         .wait(1000)
         .click('button.step-footer-continue-btn')
-       // .end(function(){console.log('success')})
-	   .then(function (result) {
-            console.log('ok');
-			  log+="4-"
-i++;
-callback(true)
-	   })
-        .catch(function (error) {
-			  log+="3-"
+
+        .wait(10000)
+
+        // .evaluate(function () {
+        //     return { firstHeading: document.querySelector('.os-order-number').innerText };
+        // }, function (value) {
+        //     return { firstHeading: 'Not in page context' };
+        // })
+        // .run(function (err, nightmare) {
+        //     if (err) return console.log(err);
+        //     listOrder.push({ order: nightmare.firstHeading.substring(nightmare.firstHeading.indexOf('#')), time: new Date().toLocaleString() });
+        // })
+        //.end()
+        .then(() => {
+            console.log('ok order')
+        }
+
+        )
+        .catch((error) => {
             console.error('Search failed:', error);
-			log='Search failed:'+ error;
-			callback(false)
         });
-	}catch(error){
-		log+="2-"
-		log="ERROR: "+error
-	}
-  
-	
 }
-//nifffff();
-//setInterval(function () {
-	//i++;
-	//nifffff();8
-//}, 30000)
-function runTest(callback){
-	nifffff(function(res){
-		if(res){
-			runTest()
-			log+="-ok-"+i+"\n"
-		}else{
-			runTest()
-		}
-	})
-}
-runTest()//run app
+//
+
+setInterval(function() {
+    console.log('===============================');
+    console.log('running a task every 1 minute');
+    autoBuy();
+    i++;
+    console.log('Số lần đặt hàng: ' + i);
+    console.log('===============================');
+}, 60000)
+
+
+// cron.schedule('0 * * * * *', async(function () {
+    
+// }));
+
+
 app.get("/", function (req, res) {
-    console.log('logggggggg')
-	res.end('APP:' + log)
+    // var text = listOrder.map(function (e, i) {
+    //     if (e) {
+    //         var data = null;
+    //         if (i === (listOrder.length - 1)) {
+    //             data = i + 1 + ' --- ' + e.number.substring(e.number.indexOf('#')) + ' --- ' + e.time;
+    //         } else {
+    //             data = i + 1 + ' --- ' + e.number.substring(e.number.indexOf('#')) + ' --- ' + e.time + 'zz';
+    //         }
+    //         return data;
+    //     } else {
+    //         return 'NO DATA';
+    //     }
+    // });
+    // console.log('text', text);
+    // var newListOrder = [];
+    // var lastIndex = listOrder.length - 1;
+    // for (var i = 0; i < listOrder.length; i++) {
+    //     var index = i + 1;
+    //     if (i === lastIndex) {
+    //         newListOrder.push('--- ' + index + ' --- ' + listOrder[i].order + ' --- ' + listOrder[i].time)
+    //     } else {
+    //         newListOrder.push('--- ' + index + ' --- ' + listOrder[i].order + ' --- ' + listOrder[i].time + 'zz')
+    //     }
+
+    // }
+    // console.log('listOrder', listOrder);
+    //res.send('Version: '+ version +' \nCount: ' + newListOrder.length + '\n' + newListOrder.toString().replace(/zz,/g, "\n"));
+    res.send('Running on version: ' + version + ' Count: ' + i);
 })
 
-app.listen(process.env.PORT||3000)
+var port = Number(process.env.PORT || 3000);
+
+app.listen(port, () => console.log('App running port 3000!'));
