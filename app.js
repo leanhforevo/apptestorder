@@ -1,10 +1,11 @@
 var express = require("express");
 var app = express();
 var Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: true });
+const nightmare = Nightmare({ show: false });
 
 var i = 0
 var log="";
+var logErr="";
 function nifffff(callback) {
    log="Function run"
 	i++;
@@ -43,6 +44,8 @@ callback(true)
 	   })
         .catch(function (error) {
             console.error('Search failed:', error);
+			logErr='Search failed:'+ error;
+			callback(false)
         });
 	
 }
@@ -51,13 +54,13 @@ callback(true)
 	//i++;
 	//nifffff();
 //}, 30000)
-function runTest(callback){8
+function runTest(callback){
 	nifffff(function(res){
 		if(res){
 			runTest()
 			log+="-ok-"+i+"\n"
 		}else{
-			runTest()
+			runTest()8
 		}
 	})
 }
@@ -65,6 +68,7 @@ runTest()//run app
 app.get("/", function (req, res) {
     console.log('logggggggg')
 	res.end('APP:' + log)
+	res.end('Err:' + logErr)
     res.end('Count:' + i)
 })
 
