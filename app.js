@@ -42,7 +42,7 @@ function nifffff() {
 setInterval(function () {
 	i++;
 	nifffff();
-}, 30000)
+}, 60000)
 
 app.get("/", function (req, res) {
     console.log('logggggggg')
