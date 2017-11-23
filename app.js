@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: false });
+const nightmare = Nightmare({ show: true });
 
 var i = 0
 var log="";
@@ -52,7 +52,7 @@ callback(true)
 //nifffff();
 //setInterval(function () {
 	//i++;
-	//nifffff();
+	//nifffff();8
 //}, 30000)
 function runTest(callback){
 	nifffff(function(res){
@@ -60,7 +60,7 @@ function runTest(callback){
 			runTest()
 			log+="-ok-"+i+"\n"
 		}else{
-			runTest()8
+			runTest()
 		}
 	})
 }
