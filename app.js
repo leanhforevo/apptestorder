@@ -36,18 +36,13 @@ function nifffff() {
         .wait(1000)
         .click('button.step-footer-continue-btn')
         .end()
-	.then(function(){
-	    nifffff();
-    })
-  .catch(function(err){
-	    nifffff();
-    });
+	
 }
 
-//setInterval(function () {
-//	i++;
+setInterval(function () {
+	i++;
 	nifffff();
-//}, 3000)
+}, 30000)
 
 app.get("/", function (req, res) {
     console.log('logggggggg')
