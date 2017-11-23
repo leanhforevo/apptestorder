@@ -3,14 +3,8 @@ var app = express();
 var Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: false });
 
-app.listen(process.env.PORT||3000)
 var i = 0
 
-app.get("/", function (req, res) {
-    nifffff();
-    console.log('logggggggg')
-    res.end('Home:' + i)
-})
 function nifffff() {
     console.log('in function:')
     nightmare
@@ -43,18 +37,15 @@ function nifffff() {
 
         .wait(2000)
         //.end()
-        .then(function() {
-            i++
-            console.log('ok order')
-            nifffff()
-        }
-
-        )
-        .catch(function(error) {
-            i++
-            nifffff()
-            console.error('Search failed:', error);
-        });
-
-
 }
+
+setInterval(function () {
+	nifffff();
+}, 3000)
+
+app.get("/", function (req, res) {
+    console.log('logggggggg')
+    res.end('Home:' + i)
+})
+
+app.listen(process.env.PORT||3000)
