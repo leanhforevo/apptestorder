@@ -43,7 +43,7 @@ function nifffff() {
 
         .wait(2000)
         //.end()
-        .then(() => {
+        .then(function() {
             i++
             console.log('ok order')
             nifffff()
