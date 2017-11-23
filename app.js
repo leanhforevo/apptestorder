@@ -40,6 +40,7 @@ function nifffff() {
 }
 
 setInterval(function () {
+	i++;
 	nifffff();
 }, 3000)
 
