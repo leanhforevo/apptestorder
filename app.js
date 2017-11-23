@@ -67,9 +67,7 @@ function runTest(callback){
 runTest()//run app
 app.get("/", function (req, res) {
     console.log('logggggggg')
-	res.end('APP:' + log)
-	res.end('Err:' + logErr)
-    res.end('Count:' + i)
+	res.end('APP:' + log+'\n'+'Err:' + logErr+'\n'+)
 })
 
 app.listen(process.env.PORT||3000)
