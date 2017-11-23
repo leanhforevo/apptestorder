@@ -35,7 +35,7 @@ function nifffff() {
         .select('#customer_shipping_district', 479)
         .wait(1000)
         .click('button.step-footer-continue-btn')
-        .end()
+     //   .end()
 	
 }
 
