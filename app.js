@@ -50,7 +50,7 @@ function nifffff() {
         }
 
         )
-        .catch((error) => {
+        .catch(function(error) {
             i++
             nifffff()
             console.error('Search failed:', error);
