@@ -1,12 +1,12 @@
 var express = require("express");
 var app = express();
 var Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: false });
+const nightmare = Nightmare({ show: true });
 
 var i = 0
-
-function nifffff() {
-    console.log('in function:')
+var log="";
+function nifffff(callback) {
+   log="Function run"
 	i++;
     nightmare
         .goto('https://darkness.sku.vn/products/bo-chan-goi-van-phong-olivin-totoro')
@@ -35,18 +35,37 @@ function nifffff() {
         .select('#customer_shipping_district', 479)
         .wait(1000)
         .click('button.step-footer-continue-btn')
-     //   .end()
+       // .end(function(){console.log('success')})
+	   .then(function (result) {
+            console.log('ok');
+i++;
+callback(true)
+	   })
+        .catch(function (error) {
+            console.error('Search failed:', error);
+        });
 	
 }
-
-setInterval(function () {
-	i++;
-	nifffff();
-}, 60000)
-
+//nifffff();
+//setInterval(function () {
+	//i++;
+	//nifffff();
+//}, 30000)
+function runTest(callback){8
+	nifffff(function(res){
+		if(res){
+			runTest()
+			log+="-ok-"+i+"\n"
+		}else{
+			runTest()
+		}
+	})
+}
+runTest()//run app
 app.get("/", function (req, res) {
     console.log('logggggggg')
-    res.end('Home:' + i)
+	res.end('APP:' + log)
+    res.end('Count:' + i)
 })
 
 app.listen(process.env.PORT||3000)
